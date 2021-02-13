@@ -3,17 +3,13 @@
  * @return {number[]}
  */
 var getRow = function(rowIndex) {
-let array=[1]
-for(let i =1;i<=rowIndex;i++) {
-  let array2=[]
-  for(let j=0;j<=array.length;j++) {
-    array2.push((array[j-1]||0)+(array[j]||0))
+  const array = Array(rowIndex+1).fill(1)
+  for(let i =1;i<=rowIndex/2;i++) {
+    array[i]=array[rowIndex-i] = array[i-1]*(rowIndex-i+1)/i
   }
-  array=array2
-}
-return array
+  return array
 };
 
-[0,1,2,3,4,5].slice(0,10).forEach(rowIndex=>{
+[0,1,2,3,4,5,6,7].slice(0,10).forEach(rowIndex=>{
   console.log(getRow(rowIndex))
 })
