@@ -23,9 +23,7 @@ var maxSatisfied = function(customers, grumpy, X) {
     }
     sum+=array[i]
     max=Math.max(max, sum)
-    console.log(i,sum)
   }
-  console.log(array, max, res)
   return res+max
 };
 [[[1,0,1,2,1,1,7,5],
