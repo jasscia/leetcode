@@ -15,7 +15,6 @@ var findNumOfValidWords = function(words, puzzles) {
       freq[mask] = (freq[mask]||0) + 1
     }
   });
-  console.log(freq)
   puzzles.forEach(puzzle=>{
     let total = 0
     for(let choose=0;choose<(1<<6);choose++){
