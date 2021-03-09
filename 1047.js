@@ -12,3 +12,5 @@ function  removeDuplicates(S){
   }
   return stack.join('')
 }
+
+console.log(removeDuplicates('abbbaca'))
