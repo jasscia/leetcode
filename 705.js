@@ -12,21 +12,21 @@ var MyHashSet = function() {
 
 MyHashSet.prototype.add = function(key) {
   const h = this.hash(key)
-  const e = this.data.find((_,index)=>index===t)
-  if(e){
-    e.push(h)
-  } else {
-    this.data[h]=[h]
+  this.data[h] =  this.data[h]||[]
+  if(!(this.data[h]).includes(key)){
+    this.data[h].push(key)
   }
 };
 
 MyHashSet.prototype.remove = function(key) {
   const h = this.hash(key)
-  delete this.data[h]
+  const index = (this.data[h]||[]).findIndex(v=>v===key)
+  if(index!==-1){
+    this.data[h].splice(index,1)
+  }
 };
 
 MyHashSet.prototype.contains = function(key) {
   const h = this.hash(key)
-  const e = this.data.find((_,index)=>index===t)
-  return !!e
+  return !!(this.data[h]||[]).includes(key)
 };
