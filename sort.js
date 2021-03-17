@@ -61,7 +61,24 @@ function sort4(list){
   return list
 }
 //快速排序
-function sort5(list){}
+function sort5(list){
+  quickSort(list,0,list.length-1)
+  function quickSort(list, start,end){
+    //单指针
+    if(start>=end){return}
+    let pivot = start
+    let v=list[pivot]
+    for(let i=pivot+1;i<=end;i++){
+      if(list[i]<v){
+        swap(list,i,pivot)
+        pivot++
+      }
+    }
+    quickSort(list,start,pivot-1)
+    quickSort(list,pivot+1,end)
+  }
+  return list
+}
 
 //归并排序
 function sort6(list){
