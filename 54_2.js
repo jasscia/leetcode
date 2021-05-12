@@ -1,3 +1,5 @@
+import {solveNQueens} from './51.js'
+console.log(solveNQueens)
 /**
  * @param {number[][]} matrix
  * @return {number[]}

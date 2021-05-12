@@ -89,3 +89,7 @@ function getLast(validList,queen) {
     const res = solveNQueens(n)
     console.log('res',res)
 })
+
+export {
+    solveNQueens 
+}
