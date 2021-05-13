@@ -11,8 +11,9 @@ var freqAlphabets = function(s) {
   }
   return str
 };
+const chars = 'abcdefghijklmnopqrstuvwxyz'
 function getChar(n){
-  return String.fromCharCode(n + 'a'.charCodeAt(0)-1)
+  return chars[n-1]
 }
 
 console.log(freqAlphabets('12'))
