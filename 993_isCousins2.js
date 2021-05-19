@@ -2,7 +2,7 @@ function isCousins (root, x, y){
   let xIndex=-1;yIndex=-1
   for(let i=0;i<root.length;i++){
     if(~xIndex && ~yIndex){
-      return
+      break
     }
     if(root[i]===x){
       xIndex=findParent(i)

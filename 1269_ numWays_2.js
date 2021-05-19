@@ -1,24 +1,40 @@
 function numWays(steps, arrLen) {
-  const memery = {}
+  let dp=[1] //标示当在index位置时 可行的方案数量
   const mod = 1000000007
-  function dp(steps, curr) {
-    const key = steps + '_' + curr
-    if (key in memery) {
-      return memery[key]
-    } else if (steps === 0) {
-      memery[key] = curr === 0 ? 1 : 0
-    } else {
-      memery[key] = dp(steps - 1, curr)
-
-      if (curr < arrLen - 1) {
-        memery[key] += dp(steps - 1, curr + 1)
+  for(let step=0;step<steps.length;step++){
+    const newDp=[]
+    for(let index=0;index<arrLen;index++){
+      let v=dp[index]||0
+      if(index+1<=arrLen-1){
+        v+=(dp[inde+1]||0)
       }
-      if (curr > 0) {
-        memery[key] += dp(steps - 1, curr - 1)
+      if(index-1>=0){
+        v+=(dp[index-1] ||0)
       }
-      memery[key] %= mod
+      newDp[index] = v % mode
     }
-    return memery[key]
+    dp = newDp
   }
-  return dp(steps, 0)
+  return dp[0]
 }
+
+var numWays = function(steps, arrLen) {
+  const MODULO = 1000000007;
+  let maxColumn = Math.min(arrLen - 1, steps);
+  let dp = new Array(maxColumn + 1).fill(0);
+  dp[0] = 1;
+  for (let i = 1; i <= steps; i++) {
+      const dpNext = new Array(maxColumn + 1).fill(0);
+      for (let j = 0; j <= maxColumn; j++) {
+          dpNext[j] = dp[j];
+          if (j - 1 >= 0) {
+              dpNext[j] = (dpNext[j] + dp[j - 1]) % MODULO;
+          }
+          if (j + 1 <= maxColumn) {
+              dpNext[j] = (dpNext[j] + dp[j + 1]) % MODULO;
+          }
+      }
+      dp = dpNext;
+  }
+  return dp[0];
+};
