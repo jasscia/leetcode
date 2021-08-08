@@ -1,6 +1,3 @@
-/**
- * Initialize your data structure here.
- */
 var Trie = function () {
   this.trie = {}
 };
@@ -11,15 +8,17 @@ var Trie = function () {
  * @return {void}
  */
 Trie.prototype.insert = function (word) {
-  const node = this.trie
-  word.forEach(w => {
+  let node = this.trie
+  for (let i = 0; i < word.length; i++) {
+    const w = word[i]
     if (node[w]) {
       node = node[w]
     } else {
       node[w] = {}
       node = node[w]
     }
-  })
+  }
+  node.end=true
 };
 
 /**
@@ -28,7 +27,7 @@ Trie.prototype.insert = function (word) {
  * @return {boolean}
  */
 Trie.prototype.search = function (word) {
-  const node = this.trie
+  let node = this.trie
   for (let i = 0; i < word.length; i++) {
     const w = word[i]
     if (node[w]) {
@@ -37,7 +36,7 @@ Trie.prototype.search = function (word) {
       return false
     }
   }
-  return !Object.keys(node).length
+  return !!node.end
 };
 
 /**
@@ -46,9 +45,9 @@ Trie.prototype.search = function (word) {
  * @return {boolean}
  */
 Trie.prototype.startsWith = function (prefix) {
-  const node = this.trie
-  for (let i = 0; i < word.length; i++) {
-    const w = word[i]
+  let node = this.trie
+  for (let i = 0; i < prefix.length; i++) {
+    const w = prefix[i]
     if (node[w]) {
       node = node[w]
     } else {
@@ -57,11 +56,3 @@ Trie.prototype.startsWith = function (prefix) {
   }
   return true
 };
-
-/**
- * Your Trie object will be instantiated and called as such:
- * var obj = new Trie()
- * obj.insert(word)
- * var param_2 = obj.search(word)
- * var param_3 = obj.startsWith(prefix)
- */
